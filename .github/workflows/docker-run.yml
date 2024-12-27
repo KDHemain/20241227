@@ -33,22 +33,8 @@ jobs:
   cd:
     needs: ci
     runs-on: ubuntu-latest
-
+    
     steps:
-    - name: Ensure Docker is installed
-      uses: appleboy/ssh-action@v1.2.0
-      with:
-        host: ${{ secrets.EC2_HOST }}
-        username: ${{ secrets.EC2_USERNAME }}
-        key: ${{ secrets.EC2_PRIVATE_KEY }}
-        script: |
-          if ! command -v docker &> /dev/null; then
-            sudo apt-get update
-            sudo apt-get install -y docker.io
-            sudo systemctl start docker
-            sudo systemctl enable docker
-          fi
-
     - name: Run Docker Container
       uses: appleboy/ssh-action@v1.2.0
       with:
