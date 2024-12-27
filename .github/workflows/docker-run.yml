@@ -42,5 +42,4 @@ jobs:
         username: ${{ secrets.EC2_USERNAME }}
         key: ${{ secrets.EC2_PRIVATE_KEY }}
         script: |
-          docker pull ${{ secrets.DOCKER_USERNAME }}/app-with-actions:latest
           docker run -d --name app -p 8080:8080 ${{ secrets.DOCKER_USERNAME }}/app-with-actions:latest
