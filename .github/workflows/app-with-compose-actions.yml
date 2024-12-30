@@ -21,6 +21,10 @@ jobs:
         cd ./src/main/resources
         touch ./application.properties
         echo "${{ secrets.PROPERTIES }}" > ./application.properties
+        echo "spring.datasource.url=jdbc:mysql://${{ secrets.RDS_ENDPOINT }}:3306/${{ secrets.RDS_DB_NAME }}" >> ./application.properties
+        echo "spring.datasource.username=${{ secrets.RDS_USERNAME }}" >> ./application.properties
+        echo "spring.datasource.password=${{ secrets.RDS_PASSWORD }}" >> ./application.properties
+        echo "spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver" >> ./application.properties
       shell: bash
       
     - name: Build with Maven
